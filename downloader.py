@@ -1,13 +1,13 @@
 import yt_dlp
 
-def download_video(url,solo_audio):
+def download_video(url,only_audio):
     output_folder = input("Ruta de descarga completa: ")
     opciones = {
         'outtmpl': f'{output_folder}/%(title)s.%(ext)s',  # Ruta de salida
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',  # Descargar en MP4
     }
 
-    if solo_audio:
+    if only_audio:
         opciones.update({
             'format': 'bestaudio/best',  # Descarga solo el mejor audio
             'postprocessors': [{

@@ -4,15 +4,18 @@ def download_video(url,solo_audio):
     output_folder = input("Ruta de descarga completa: ")
     opciones = {
         'outtmpl': f'{output_folder}/%(title)s.%(ext)s',  # Ruta de salida
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': "mp3",
-        }] if solo_audio else None,
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',  # Descargar en MP4
     }
+
     if solo_audio:
-        opciones['format'] = 'bestaudio/best'  # Descarga solo audio
-    else:
-        opciones['format'] = 'bestvideo+bestaudio/best'  # Descarga video en la mejor calidad
+        opciones.update({
+            'format': 'bestaudio/best',  # Descarga solo el mejor audio
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',  # Calidad de audio
+            }]
+        })
 
     try:
         with yt_dlp.YoutubeDL(opciones) as ydl:

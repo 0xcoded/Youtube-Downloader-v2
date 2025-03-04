@@ -26,7 +26,7 @@ def download_video(url,solo_audio):
 
 if __name__=="__main__":
     url = input("Introduce la URL: ")
-    format = input("¿Desea descargar sólo el audio? ")
+    format = input("¿Desea descargar sólo el audio? s/n ")
     match format:
         case "s":
             download_video(url, True)

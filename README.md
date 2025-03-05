@@ -1,6 +1,6 @@
 **Simple YouTube Downloader written in Python**
 
-Simple YouTube Downloader written in python, wich can download video or audio at best resolution
+Simple YouTube Downloader written in python, witch can download video or audio at best resolution
 
 **Instructions**
 

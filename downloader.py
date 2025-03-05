@@ -36,6 +36,7 @@ def descargar_video(url, only_audio, output_folder):
         print(f"Error al descargar: {e}")
 
 if __name__ == "__main__":
+    tk.messagebox.showinfo(title="Bienvenido", message="Collab:\n0xcoded\nHanco89")
     root = tk.Tk()
     gui = gui.Gui(root)
     root.mainloop()

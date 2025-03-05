@@ -31,9 +31,9 @@ def descargar_video(url, only_audio, output_folder):
     try:
         with yt_dlp.YoutubeDL(opciones) as ydl:
             ydl.download([url])
-            print(f"Descarga completada para: {url}")
+            tk.messagebox.showinfo(title="INFO", message=f"Descarga completada para: {url}")
     except Exception as e:
-        print(f"Error al descargar: {e}")
+        tk.messagebox.showerror(title="ERROR", message=f"Error al descargar: {e}")
 
 if __name__ == "__main__":
     tk.messagebox.showinfo(title="Bienvenido", message="Collab:\n0xcoded\nHanco89")

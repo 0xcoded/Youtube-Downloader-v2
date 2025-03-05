@@ -84,9 +84,11 @@ class Gui:
 
     
 def download_mp3():
+    tk.messagebox.showinfo(title="INFO", message="Iniciando descarga en MP3, espere...")
     downloader.descargar_video(url.get(), True, select_directory())
     
 def download_mp4():
+    tk.messagebox.showinfo(title="INFO", message="Iniciando descarga en MP4, espere...")
     downloader.descargar_video(url.get(), False, select_directory())
         
 def select_directory():

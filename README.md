@@ -4,6 +4,8 @@ Simple YouTube Downloader written in python, witch can download video or audio a
 
 **Instructions**
 
+> pip3 install yt-dlp
+> pip3 install tkinter
 > python3 donwloader.py
 
 *Collaborators: 0xcoded, Hancox*

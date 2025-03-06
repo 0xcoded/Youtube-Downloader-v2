@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 **Simple YouTube Downloader written in Python**
 
 Simple YouTube Downloader written in python, witch can download video or audio at best resolution
@@ -12,6 +11,3 @@ Simple YouTube Downloader written in python, witch can download video or audio a
 https://github.com/0xcoded
 
 https://github.com/hanco89
-=======
-GUI
->>>>>>> master

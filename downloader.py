@@ -1,39 +1,49 @@
 import yt_dlp
 import gui
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 
 def descargar_video(url, only_audio, output_folder):
+    if not output_folder:
+        messagebox.showerror(title="ERROR", message="No seleccionaste carpeta")
+        return
+
     """
-        Descarga un video de YouTube, con la opción de solo descargar el audio.
+    Descarga videos o playlists de YouTube en MP4 o MP3
+    """
 
-        Pide al usuario la ruta de descarga completa, y luego utiliza yt-dlp para
-        descargar el video o audio en la mejor calidad posible.
-
-        Si se elige solo el audio, lo descarga en formato mp3 con una calidad de
-        192 kbps.
-    """       
     opciones = {
-        'outtmpl': f'{output_folder}/%(title)s.%(ext)s',  # Ruta de salida
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',  # Descargar en MP4
+        # 📁 Si es playlist, crea subcarpeta
+        'outtmpl': f'{output_folder}/%(playlist_title)s/%(title)s.%(ext)s',
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
+
+        # 🔥 IMPORTANTE: permitir playlists
+        'noplaylist': False,
+        'ignoreerrors': True,  # continúa si un video falla
     }
 
     if only_audio:
         opciones.update({
-            'format': 'bestaudio/best',  # Descarga solo el mejor audio
+            'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
-                'preferredquality': '192',  # Calidad de audio
+                'preferredquality': '192',
             }]
         })
 
     try:
         with yt_dlp.YoutubeDL(opciones) as ydl:
             ydl.download([url])
-            tk.messagebox.showinfo(title="INFO", message=f"Descarga completada para: {url}")
+
+        messagebox.showinfo(
+            title="INFO",
+            message="Descarga completada (video o lista)"
+        )
+
     except Exception as e:
-        tk.messagebox.showerror(title="ERROR", message=f"Error al descargar: {e}")
+        messagebox.showerror(title="ERROR", message=f"Error al descargar: {e}")
+
 
 if __name__ == "__main__":
     tk.messagebox.showinfo(title="Bienvenido", message="Collaboradores:\n0xcoded\nHanco89")
